@@ -1,0 +1,30 @@
+from selenium import webdriver
+import time
+options = webdriver.ChromeOptions()
+prefs = {
+    'profile.default_content_setting_values': {
+        'images': 2,
+        'javascript': 2
+    }
+}
+options.add_experimental_option('prefs', prefs)
+options.add_argument('--headless')
+driver=webdriver.Chrome(executable_path="C:\Program Files (x86)\Google\Chrome\Application\chromedriver",chrome_options=options)
+url="http://m.zhengzai.tv/#/ticket/purchase/detail?id=5518&type=purchase&performance_id=5518&ticket_id=9196&amount=1&products_array=&amount_array=&express=0"
+driver.get(url)
+time.sleep(0.5)
+mima_btn=driver.find_element_by_xpath("//*[@id='app']/div/span")
+mima_btn.click()
+time.sleep(0.5)
+tel="电话"
+password="密码"
+inp_t=driver.find_element_by_xpath("//*[@id='app']/div/div[2]/input[1]")
+inp_t.send_keys(tel)
+inp_p=driver.find_element_by_xpath("//*[@id='app']/div/div[2]/input[2]")
+inp_p.send_keys(password)
+longin_btn=driver.find_element_by_xpath("//*[@id='app']/div/button")
+longin_btn.click()
+time.sleep(0.5)
+pur_btn=driver.find_element_by_xpath("//*[@id='app']/div/div[3]/span")
+pur_btn.click()
+
